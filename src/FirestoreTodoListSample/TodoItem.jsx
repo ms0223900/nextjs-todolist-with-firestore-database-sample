@@ -1,6 +1,7 @@
 import { DeleteOutlineOutlined } from '@mui/icons-material';
 import { Box, Button, Checkbox, TextField } from '@mui/material';
 import React, { memo, useCallback, useEffect, useRef } from 'react';
+import asyncUpdateTodo from '../../api/firebase/asyncUpdateTodo';
 import useToggle from './functions/useToggle';
 
 const TodoItem = ({
@@ -29,6 +30,9 @@ const TodoItem = ({
   const handleAsyncSaveContent = useCallback(async () => {
     if (prevContent.current === content) return setToggle(false);
     // api
+    await asyncUpdateTodo(id, {
+      content,
+    });
     setToggle(false);
     prevContent.current = content;
   }, [id, content]);
