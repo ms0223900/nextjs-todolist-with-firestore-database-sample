@@ -1,11 +1,14 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const useQuery = (asyncQueryFn, updateCb) => {
+const useQuery = (
+  asyncQueryFn: (...params: any) => Promise<any>,
+  updateCb: (res: any) => any
+) => {
   const loading = useRef(false);
   const [err, setErr] = useState(null);
   const [data, setData] = useState(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     (async () => {
       // console.log('fetching data...');
       if (!asyncQueryFn) return;
@@ -18,7 +21,7 @@ const useQuery = (asyncQueryFn, updateCb) => {
         if (updateCb) {
           updateCb(res);
         }
-      } catch (error) {
+      } catch (error: any) {
         setErr(error);
       } finally {
         loading.current = false;
