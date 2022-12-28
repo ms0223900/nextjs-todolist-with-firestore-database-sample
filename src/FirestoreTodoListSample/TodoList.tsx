@@ -3,14 +3,15 @@ import { Button, Paper } from '@mui/material';
 import React, { memo } from 'react';
 import TodoItem from './TodoItem';
 import styles from './todo-list.module.css';
+import { TodoListProps } from './types';
 
 const TodoList = ({
   todoListData = [],
   onAddTodo,
   onToggleChecked,
-  onChangeTodoContent,
-  onDeleteTodo,
-}) => {
+  onChangeContent,
+  onDelete,
+}: TodoListProps) => {
   return (
     <Paper className={styles['todo-list--wrapper']}>
       <h2>TodoList App | 代辦事項App</h2>
@@ -19,8 +20,8 @@ const TodoList = ({
           key={t.id}
           {...t}
           onToggleChecked={onToggleChecked}
-          onChangeContent={onChangeTodoContent}
-          onDelete={onDeleteTodo}
+          onChangeContent={onChangeContent}
+          onDelete={onDelete}
         />
       ))}
       <Button

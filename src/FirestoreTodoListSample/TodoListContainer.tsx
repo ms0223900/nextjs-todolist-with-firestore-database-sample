@@ -20,8 +20,8 @@ const TodoListContainer = ({
         todoListData={todoList}
         onAddTodo={handleAddTodo}
         onToggleChecked={handleToggleChecked}
-        onChangeTodoContent={handleEditTodo}
-        onDeleteTodo={handleDeleteTodo}
+        onChangeContent={handleEditTodo}
+        onDelete={handleDeleteTodo}
       />
     </div>
   );

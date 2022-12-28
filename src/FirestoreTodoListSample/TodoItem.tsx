@@ -2,6 +2,7 @@ import { DeleteOutlineOutlined } from '@mui/icons-material';
 import { Box, Button, Checkbox, TextField } from '@mui/material';
 import React, {
   ChangeEvent,
+  ChangeEventHandler,
   memo,
   useCallback,
   useEffect,
@@ -16,8 +17,8 @@ const TodoItem = ({
   checked,
   content,
   onToggleChecked,
-  onDelete,
   onChangeContent,
+  onDelete,
 }: TodoItemProps) => {
   const prevContent = useRef(content);
   const { toggle: isEditing, setToggle, handleToggle } = useToggle();

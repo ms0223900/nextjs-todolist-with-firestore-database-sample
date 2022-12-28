@@ -1,7 +1,11 @@
 import { SingleTodo } from 'api-types';
 import { Callback } from 'common-types';
 
-export interface TodoListProps extends TodoItemProps {
+export interface TodoListProps
+  extends Pick<
+    TodoItemProps,
+    'onToggleChecked' | 'onChangeContent' | 'onDelete'
+  > {
   todoListData: SingleTodo[];
   onAddTodo: Callback;
 }
