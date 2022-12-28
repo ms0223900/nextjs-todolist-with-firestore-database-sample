@@ -1,12 +1,14 @@
 import { use, useCallback, useEffect, useMemo, useState } from 'react';
 import makeInitTodoItem from './makeInitTodoItem';
-import asyncAddTodo from '../../../api/firebase/asyncAddTodo';
-import asyncUpdateTodo from '../../../api/firebase/asyncUpdateTodo';
-import asyncGetTodoList from '../../../api/firebase/asyncGetTodoList';
-import asyncDeleteTodo from '../../../api/firebase/asyncDeleteTodo';
-import useQuery from '../../utils/hooks/useQuery';
+import asyncAddTodo from '~/api/firebase/asyncAddTodo';
+import asyncUpdateTodo from '~/api/firebase/asyncUpdateTodo';
+import asyncGetTodoList from '~/api/firebase/asyncGetTodoList';
+import asyncDeleteTodo from '~/api/firebase/asyncDeleteTodo';
+import useQuery from '~/src/utils/hooks/useQuery';
+import { UseTodoListOptions } from '../types';
+import { SingleTodo } from 'api-types';
 
-const useTodoList = ({ initTodoListData = [] }) => {
+const useTodoList = ({ initTodoListData = [] }: UseTodoListOptions) => {
   // 似乎React18的use() API還沒開放使用...
   // const fetchedTodoListData = use(asyncGetTodoList());
 
@@ -30,9 +32,9 @@ const useTodoList = ({ initTodoListData = [] }) => {
   }, []);
 
   const handleEditTodo = useCallback(
-    (key = 'checked') =>
+    <Key extends keyof SingleTodo>(key: Key) =>
       (id = '') =>
-      async (value) => {
+      async (value: SingleTodo[Key]) => {
         // update api
         //...
         if (key === 'checked') {

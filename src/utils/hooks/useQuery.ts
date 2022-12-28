@@ -1,8 +1,9 @@
+import { Callback } from 'common-types';
 import { useEffect, useRef, useState } from 'react';
 
 const useQuery = (
   asyncQueryFn: (...params: any) => Promise<any>,
-  updateCb: (res: any) => any
+  updateCb: Callback
 ) => {
   const loading = useRef(false);
   const [err, setErr] = useState(null);
