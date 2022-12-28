@@ -1,7 +1,11 @@
+import { SingleTodo } from 'api-types';
 import { addDoc, serverTimestamp } from 'firebase/firestore';
 import { todoListCollectionDocRef } from './firebase';
 
-const asyncAddTodo = async ({ content, checked }) => {
+const asyncAddTodo = async ({
+  content,
+  checked,
+}: Pick<SingleTodo, 'content' | 'checked'>) => {
   const docRef = await addDoc(todoListCollectionDocRef, {
     content,
     checked,
