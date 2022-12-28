@@ -1,8 +1,15 @@
 import { DeleteOutlineOutlined } from '@mui/icons-material';
 import { Box, Button, Checkbox, TextField } from '@mui/material';
-import React, { memo, useCallback, useEffect, useRef } from 'react';
+import React, {
+  ChangeEvent,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+} from 'react';
 import asyncUpdateTodo from '../../api/firebase/asyncUpdateTodo';
 import useToggle from './functions/useToggle';
+import { TodoItemProps } from './types';
 
 const TodoItem = ({
   id,
@@ -11,17 +18,17 @@ const TodoItem = ({
   onToggleChecked,
   onDelete,
   onChangeContent,
-}) => {
+}: TodoItemProps) => {
   const prevContent = useRef(content);
   const { toggle: isEditing, setToggle, handleToggle } = useToggle();
   const handleEditContent = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       onChangeContent(id)(e.currentTarget.value);
     },
     [id]
   );
   const handleToggleChecked = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       onToggleChecked(id)(e.currentTarget.checked);
     },
     [id]

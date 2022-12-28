@@ -1,8 +1,11 @@
 import React, { memo } from 'react';
 import useTodoList from './functions/useTodoList';
 import TodoList from './TodoList';
+import { TodoListContainerProps } from './types';
 
-const TodoListContainer = ({ initTodoListData = [] }) => {
+const TodoListContainer = ({
+  initTodoListData = [],
+}: TodoListContainerProps) => {
   const {
     todoList,
     handleAddTodo,
